@@ -1,0 +1,18 @@
+{% extends 'books/book_form.html' %}
+
+{% block content %}
+    <section class="page-heading">
+        <h1>Create Book</h1>
+        <p class="subtitle">Add a new title to your collection.</p>
+    </section>
+    <section class="card">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="actions">
+                <button type="submit">Create book</button>
+                <a class="button secondary" href="{% url 'books:book_form' %}">Cancel</a>
+            </div>
+        </form>
+    </section>
+{% endblock %}

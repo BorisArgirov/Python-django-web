@@ -1,0 +1,18 @@
+{% extends 'reviews/review_form.html' %}
+
+{% block content %}
+    <section class="page-heading">
+        <h1>Edit Review</h1>
+        <p class="subtitle">Update the information in this review.</p>
+    </section>
+    <section class="card form-card">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="actions">
+                <button type="submit">Save changes</button>
+                <a class="button secondary" href="{% url 'reviews:review_form' %}">Cancel</a>
+            </div>
+        </form>
+    </section>
+{% endblock %}

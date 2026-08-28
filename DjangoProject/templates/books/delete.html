@@ -1,0 +1,18 @@
+{% extends 'books/book_form.html' %}
+
+{% block content %}
+    <section class="page-heading">
+        <h1>Delete Book</h1>
+        <p class="subtitle">Please confirm that you want to remove this title.</p>
+    </section>
+    <section class="card">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="actions">
+                <button class="danger" type="submit">Delete book</button>
+                <a class="button secondary" href="{% url 'books:book_form' %}">Cancel</a>
+            </div>
+        </form>
+    </section>
+{% endblock %}
