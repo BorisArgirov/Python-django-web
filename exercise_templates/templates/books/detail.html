@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="py-4">
+    <div class="card border-0 shadow-sm overflow-hidden">
+        <div class="row g-0">
+            <div class="col-md-4 bg-light">
+                <img src="{{ book.image_url }}" class="img-fluid w-100 h-100 object-fit-cover" alt="Cover of {{ book.title }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body p-4 p-lg-5">
+                    <span class="badge bg-primary mb-3">{{ book.genre }}</span>
+                    <h1 class="display-6 fw-bold">{{ book.title }}</h1>
+                    <p class="lead text-secondary">{{ book.description }}</p>
+
+                    <dl class="row mt-4">
+                        <dt class="col-sm-4">Price</dt>
+                        <dd class="col-sm-8">${{ book.price }}</dd>
+
+                        <dt class="col-sm-4">ISBN</dt>
+                        <dd class="col-sm-8">{{ book.isbn }}</dd>
+
+                        <dt class="col-sm-4">Published</dt>
+                        <dd class="col-sm-8">{{ book.publish_date }}</dd>
+
+                        <dt class="col-sm-4">Average rating</dt>
+                        <dd class="col-sm-8">
+                            {% if book.avg_rating is not NONE %}
+                                {{ book.avg_rating|floatformat:2}}
+                            {% else %}
+                                No Rating
+                            {% endif %}
+                        </dd>
+                    </dl>
+
+                    <a class="btn btn-outline-primary mt-3" href="{% url 'books:list' %}">Back to Books</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

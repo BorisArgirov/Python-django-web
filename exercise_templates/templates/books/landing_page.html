@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="py-5">
+    <div class="p-5 mb-4 bg-primary text-white rounded-3 shadow-sm">
+        <div class="container-fluid py-4">
+            <h1 class="display-4 fw-bold">Welcome to Book Hub</h1>
+            <p class="col-lg-8 fs-5 mb-4">
+                Discover books, explore new stories, and read the latest reviews.
+            </p>
+            <a class="btn btn-light btn-lg" href="{% url 'books:list' %}">
+                Browse Books
+            </a>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <h2 class="card-title h5 text-secondary">Books in the Hub</h2>
+                    <p class="display-3 fw-bold text-primary mb-0">{{ total_books }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="card-title h5 text-secondary mb-3">Latest Book</h2>
+
+                    {% if latest_books %}
+                        <h3 class="h2">{{ latest_books.title }}</h3>
+                        <p class="mb-2"><strong>Genre:</strong> {{ latest_books.genre }}</p>
+                        <p class="mb-2"><strong>Published:</strong> {{ latest_books.publish_date }}</p>
+                        <p class="mb-4"><strong>Price:</strong> ${{ latest_books.price|floatformat:2}}</p>
+                        <p class="mb-4">{{ latest_books.description }}</p>
+                        <a class="btn btn-outline-primary" href="{% url 'books:detail' latest_books.slug %}">
+                            View Book
+                        </a>
+                    {% else %}
+                        <div class="alert alert-info mb-0" role="alert">
+                            No books have been added yet.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
